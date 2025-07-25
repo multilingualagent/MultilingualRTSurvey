@@ -44,12 +44,12 @@ with tab1:
             "### Overview of Datasets for Multilingual Safety based on the Paper: [Multilingual RedTeaming Surveys]"
         )
         st.markdown(
-            "### ℹ️ ** Notes** \n"
+            "### ℹ️ Notes \n"
             "You might notice that some information isn't provided for every dataset. We've indicated these instances using the following markers: 'not applicable', 'not specified', '-'"
         )
 
         st.markdown(
-            "### ✉️ ** Contact** \n"
+            "### ✉️ Contact \n"
             "Your feedback is valuable! If you find any errors in our datasets, please don't hesitate to email us at: [contact]. \n"
             " Additionally, if you're interested in contributing a new dataset, please get in touch with us at the same address: [contact]. "
         )
@@ -71,6 +71,8 @@ with tab2:
     with col1:
         # --- FILTERING ---
         st.markdown("### 🔎 Use the filters below to narrow down datasets.")
+        
+        search_text = st.text_input("Search text:")
         selected = {}
         for col in yes_no_colums:
             options = data[col].dropna().unique()
@@ -85,7 +87,7 @@ with tab2:
             options = sorted(options)
             selected[col] = st.multiselect(col, options, default=options)
 
-        search_text = st.text_input("Search text:")
+        
 
         mask = np.ones(len(data), dtype=bool)  # start with all True
         for col in yes_no_colums:
